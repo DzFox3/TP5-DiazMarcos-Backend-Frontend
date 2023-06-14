@@ -44,6 +44,17 @@ export class ProductoService {
     }
     return this._http.get(this.urlProd+"producto/"+id, httpOption)
   }
+  deleteProducto(id: string):Observable<any>{
+    let httpOption = {
+      headers: new HttpHeaders(
+        {
+
+        }
+      ),
+      params: new HttpParams()
+    }
+    return this._http.delete(this.urlProd+"producto/"+id, httpOption)
+  }
   creatProducto(prod: Producto): Observable<any>{
     let httpOption = {
       headers: new HttpHeaders(

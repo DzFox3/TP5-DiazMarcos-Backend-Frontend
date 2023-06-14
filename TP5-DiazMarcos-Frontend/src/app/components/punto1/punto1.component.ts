@@ -43,6 +43,15 @@ export class Punto1Component implements OnInit {
   }
   public modificarProd(producto: Producto){
     this.router.navigate(['formularioP', producto._id]);
-
+  }
+  public eliminarProd(eliminado: Producto){
+    this.prod.deleteProducto(eliminado._id).subscribe(
+      (result) => {
+        if(result.status == 1){
+          alert("Se elimino un producto")
+        }
+      }
+    )
+    window.location.reload();
   }
 }

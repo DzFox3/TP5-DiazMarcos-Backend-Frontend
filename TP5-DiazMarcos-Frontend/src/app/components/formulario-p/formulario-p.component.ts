@@ -16,6 +16,7 @@ export class FormularioPComponent implements OnInit {
               private router: Router,
               private activatedRoute: ActivatedRoute) { 
                 this.producto = new Producto();
+                this.producto.destacado = false;
               }
 
   ngOnInit(): void {

@@ -12,7 +12,7 @@
       </select>
     </div>
     <div class="col-2">
-      <button (click)="prodDestacados()" type="button" class="btn btn-primary btn-lg">Large button</button>
+      <button (click)="prodDestacados()" type="button" class="btn btn-primary btn-lg">Agregar Filtro</button>
     </div>
   </div>  
 </div>
@@ -41,7 +41,7 @@
         <td><img src="{{d.imagen}}" alt="" style="width: 40%"></td>
         <td>
             <button (click)="modificarProd(d)" class="btn btn-success" style="width: 100px">Modificar</button>
-            <button class="btn btn-danger" style="width: 100px">Eliminar</button>
+            <button (click)="eliminarProd(d)" class="btn btn-danger" style="width: 100px">Eliminar</button>
         </td>
 
     </tr>
