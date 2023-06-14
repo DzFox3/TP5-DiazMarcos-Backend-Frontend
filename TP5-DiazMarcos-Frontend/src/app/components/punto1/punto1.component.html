@@ -1,0 +1,49 @@
+<div class="p-2">
+    <button (click)="agregarProd()" type="button" class="btn btn-outline-danger">Agregar Producto</button>
+</div>
+<h4 class="text-center">Backend de productos</h4>
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <select [(ngModel)]="des" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+        <option value="">Todos los Productos</option>
+        <option value="true">Productos Destacados</option>
+        <option value="false">Productos No Destacados</option>
+      </select>
+    </div>
+    <div class="col-2">
+      <button (click)="prodDestacados()" type="button" class="btn btn-primary btn-lg">Large button</button>
+    </div>
+  </div>  
+</div>
+<table  class="table table-striped border border-1">
+    <thead>
+    <tr>
+        <th style="width: 20%">
+            Nombre del Producto
+        </th>
+        <th style="width: 50%">
+            Descripción
+        </th>
+        <th style="width: 10%">
+            Precio
+        </th>
+        <th style="width: 20%">
+            Imagen
+        </th>   
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let d of productos">
+        <td>{{d.nombre}}</td>
+        <td>{{d.descripcion}}</td>
+        <td>{{d.precio | currency}}</td>
+        <td><img src="{{d.imagen}}" alt="" style="width: 40%"></td>
+        <td>
+            <button (click)="modificarProd(d)" class="btn btn-success" style="width: 100px">Modificar</button>
+            <button class="btn btn-danger" style="width: 100px">Eliminar</button>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
