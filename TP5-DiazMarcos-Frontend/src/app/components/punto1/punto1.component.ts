@@ -24,7 +24,6 @@ export class Punto1Component implements OnInit {
   public obtenerProductos(){
     this.prod.getProductos().subscribe(
       (result)=>{
-        console.log(result)
         this.productos = result;
       }
     )
@@ -32,14 +31,12 @@ export class Punto1Component implements OnInit {
   public prodDestacados(){
     this.prod.getProdDes(this.des).subscribe(
       (result)=>{
-        console.log(result)
         this.productos = result;
       }
     )
   }
   public agregarProd(){
     this.router.navigate(['formularioP', 0]);
-
   }
   public modificarProd(producto: Producto){
     this.router.navigate(['formularioP', producto._id]);

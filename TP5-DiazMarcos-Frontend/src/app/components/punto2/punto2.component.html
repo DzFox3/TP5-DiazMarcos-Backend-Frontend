@@ -4,6 +4,29 @@
             <div class="d-grid gap-2">
                 <button (click)="getTransacciones()" class="btn btn-success" type="button">Lista de Transacciones</button>
             </div>
+            <div class="row g-2 mt-2">
+                <div class="col-4">
+                    <div class="mb-3">
+                        <label for="de" class="form-label">Moneda Origen</label>
+                        <select class="form-select" id="de" name="de"[(ngModel)]="monedaO">
+                            <option  *ngFor="let d of data" value="{{d.symbol}}">{{d.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="mb-3">
+                        <label for="a" class="form-label">Moneda Destino</label>
+                        <select class="form-select" id="a" name="a"[(ngModel)]="monedaD">
+                            <option *ngFor="let d of data" value="{{d.symbol}}">{{d.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4 m-auto">
+                    <div class="mb-3">
+                        <button (click)="getFiltro()" type="button" class="btn btn-primary btn-lg">Listar por Filtro</button>
+                    </div>
+                </div>
+            </div>
             <table  class="table table-striped border border-4">
                 <thead>
                 <tr>
@@ -31,33 +54,9 @@
                     <td>{{t.monedaDestino}}</td>
                     <td>{{t.cantidadDestino | currency: t.monedaDestino}}</td>
                     <td>{{t.emailCliente}}</td>
-            
                 </tr>
                 </tbody>
             </table>
-            <div class="row">
-                <div class="col-4">
-                    <div class="mb-3">
-                        <label for="de" class="form-label">Moneda Origen</label>
-                        <select class="form-select" id="de" name="de"[(ngModel)]="monedaO">
-                            <option  *ngFor="let d of data" value="{{d.symbol}}">{{d.name}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="mb-3">
-                        <label for="a" class="form-label">Moneda Destino</label>
-                        <select class="form-select" id="a" name="a"[(ngModel)]="monedaD">
-                            <option *ngFor="let d of data" value="{{d.symbol}}">{{d.name}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-4 m-auto">
-                    <div class="mb-3">
-                        <button (click)="getFiltro()" type="button" class="btn btn-primary btn-lg">Listar por Filtro</button>
-                    </div>
-                </div>
-            </div>       
         </div>
         <div class="col-sm-12 col-lg-4 bg-danger">
             <legend>
@@ -66,7 +65,7 @@
             <form class="container">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email del Cliente</label>
-                    <input type="email" placeholder="abcdfh@gmail.com" class="form-control" id="email" name="email" [(ngModel)]="transaccion_Nueva.emailCliente">
+                    <input type="email" placeholder="abcdfgh@gmail.com" class="form-control" id="email" name="email" [(ngModel)]="transaccion_Nueva.emailCliente">
                   </div>
                 <div class="mb-3">
                   <label for="valor" class="form-label">Cantidad Origen</label>
@@ -99,7 +98,7 @@
                             </svg>
                         </button>
                     </div>
-                    <div *ngIf="dis == true" class="col-6" disabled>
+                    <div *ngIf="dis == true" class="col-6">
                         <button (click)="guardarTransaccion()" class="cl1 btn btn-primary" style="width: 100%">
                             Guardar
                         </button>

@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8 p-3 bg-info bg-opacity-10 border border-info border-start-0 rounded-end">
+            <form>
+                <legend class="text-success border-bottom border-success">Nuevo Ticket</legend>
+                <div class="mb-3">
+                    <label for="precio" class="form-label">Precio del Ticket</label>
+                    <input [(ngModel)]="tk.precioTicket"  type="number" class="form-control" id="precio" name="precio" required>
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Categoria del Espectador</label>
+                    <select [(ngModel)]="tk.categoriaEspectador" id="categoria" name="categoria" class="form-select">
+                        <option value="e">Extrangero</option>
+                        <option value="l">Local</option>
+                      </select>
+                </div>
+                <div class="mb-3">
+                    <label for="imagen" class="form-label">Fecha de la Compra (Fecha de Hoy: {{local | date:'dd/MM/yyyy'}})</label>
+                    <input [(ngModel)]="tk.fechaCompra" type="text" class="form-control" id="fecha" name="fecha">
+                </div>
+                <div class="mb-3">
+                    <label for="precio" class="form-label">Espectador (Apellido, Nombre)</label>
+                    <select [(ngModel)]="tk.espectador" id="espectador_id" name="espectador_id" class="form-select" aria-label="Default select example">
+                        <option *ngFor="let e of espectadores" [ngValue]="e">{{e.apellido}}, {{e.nombre}}</option>
+                    </select>
+                </div>
+                <div>
+                    <div *ngIf="accion == 'new'">                   
+                        <button (click)="guardarTicket()" type="submit" class="btn btn-primary btn-md m-2">Guardar Producto</button>
+                        <button (click)="cancelar()" type="button" class=" m-2 btn btn-danger btn-md">Cancelar Producto</button>
+                    </div>
+                    <div *ngIf="accion == 'update'">       
+                        <button (click)="actualizarTicket()" type="submit" class="btn btn-primary btn-md m-2">Actualizar Producto</button>
+                        <button (click)="cancelar()" type="button" class=" m-2 btn btn-danger btn-md">Cancelar Producto</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+</div>

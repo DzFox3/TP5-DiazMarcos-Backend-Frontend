@@ -33,7 +33,6 @@ export class Punto2Component implements OnInit {
     this.tran.getTransacciones().subscribe(
       (result) => {
         this.tr = result
-        console.log(this.tr)
       }
     )
   }

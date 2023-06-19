@@ -11,6 +11,7 @@ import { Punto2Component } from './components/punto2/punto2.component';
 import { Punto3Component } from './components/punto3/punto3.component';
 import { FormularioPComponent } from './components/formulario-p/formulario-p.component';
 import { FormsModule } from '@angular/forms';
+import { FormularioTComponent } from './components/formulario-t/formulario-t.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     Punto1Component,
     Punto2Component,
     Punto3Component,
-    FormularioPComponent
+    FormularioPComponent,
+    FormularioTComponent
   ],
   imports: [
     BrowserModule,

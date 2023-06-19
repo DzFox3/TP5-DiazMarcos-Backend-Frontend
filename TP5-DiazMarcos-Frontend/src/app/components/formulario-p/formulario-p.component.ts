@@ -30,7 +30,6 @@ export class FormularioPComponent implements OnInit {
         }
       }
     )
-
   }
   public cargarProd(id: string){
     this.prod.getProducto(id).subscribe(
