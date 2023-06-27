@@ -62,36 +62,43 @@
             <legend>
                 <p>Conversor de Divisas</p>
             </legend>
-            <form class="container">
+            <form novalidate (ngSubmit)="onSubmit()" #formTransaccion="ngForm" class="container">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email del Cliente</label>
-                    <input type="email" placeholder="abcdfgh@gmail.com" class="form-control" id="email" name="email" [(ngModel)]="transaccion_Nueva.emailCliente">
-                  </div>
+                    <input required #email="ngModel" type="email" placeholder="abcdfgh@gmail.com" class="form-control" id="email" name="email" [(ngModel)]="transaccion_Nueva.emailCliente">
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                        <div *ngIf="email.errors?.['required']"> El Email de Usuario es necesario. </div>
+                    </div>
+                </div>
                 <div class="mb-3">
-                  <label for="valor" class="form-label">Cantidad Origen</label>
-                  <input type="number" placeholder="Valor de..." class="form-control" id="valor" name="valor" [(ngModel)]="transaccion_Nueva.cantidadOrigen">
+                    <label for="valor" class="form-label">Cantidad Origen</label>
+                    <input required #origen="ngModel" type="number" placeholder="Valor de..." class="form-control" id="valor" name="valor" [(ngModel)]="transaccion_Nueva.cantidadOrigen">
+                    <div *ngIf="origen.invalid && (origen.dirty || origen.touched)" class="alert alert-danger">
+                        <div *ngIf="origen.errors?.['required']"> La cantidad de origen es necesario. </div>
+                    </div>
                 </div>
                 <div class="mb-3">
                   <label for="de" class="form-label">Moneda Origen</label>
-                  <select class="form-select" id="de" name="de"[(ngModel)]="transaccion_Nueva.monedaOrigen">
-                      <option selected>Seleccione opción</option>
+                  <select required class="form-select" id="de" name="de"[(ngModel)]="transaccion_Nueva.monedaOrigen">
                       <option  *ngFor="let d of data" value="{{d.symbol}}">{{d.name}}</option>
                   </select>
                 </div>
                 <div class="mb-3">
                   <label for="a" class="form-label">Moneda Destino</label>
-                  <select class="form-select" id="a" name="a"[(ngModel)]="transaccion_Nueva.monedaDestino">
-                      <option selected>Seleccione opción</option>
+                  <select required class="form-select" id="a" name="a"[(ngModel)]="transaccion_Nueva.monedaDestino">
                       <option *ngFor="let d of data" value="{{d.symbol}}">{{d.name}}</option>
                   </select>
                 </div>
                 <div class="mb-3">
                     <label for="tasa" class="form-label">Tasa de Conversion</label>
-                    <input type="number" placeholder="Valor de..." class="form-control" id="tasa" name="tasa" [(ngModel)]="transaccion_Nueva.tasaConversion">
+                    <input required #tasa="ngModel" type="number" placeholder="Valor de..." class="form-control" id="tasa" name="tasa" [(ngModel)]="transaccion_Nueva.tasaConversion">
+                    <div *ngIf="tasa.invalid && (tasa.dirty || tasa.touched)" class="alert alert-danger">
+                        <div *ngIf="tasa.errors?.['required']"> La tasa de Transaccion es necesario. </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <button (click)="getConvertir()" class="cl1 btn btn-primary" style="width: 100%">
+                        <button [disabled]="formTransaccion.invalid" (click)="getConvertir()" class="cl1 btn btn-primary" style="width: 100%">
                             Convertir
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                               <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>

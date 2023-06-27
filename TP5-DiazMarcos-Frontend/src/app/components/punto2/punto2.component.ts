@@ -29,6 +29,10 @@ export class Punto2Component implements OnInit {
     this.getTransacciones()
   }
 
+  onSubmit() {
+    console.log(this.transaccion_Nueva);
+  }
+
   public getTransacciones(){
     this.tran.getTransacciones().subscribe(
       (result) => {
@@ -47,6 +51,7 @@ export class Punto2Component implements OnInit {
         }
       }
     )
+    window.location.reload();
   }
   public getFiltro(){
     console.log(this.monedaO, this.monedaD)

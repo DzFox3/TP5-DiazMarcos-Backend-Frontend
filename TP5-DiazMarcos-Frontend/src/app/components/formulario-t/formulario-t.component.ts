@@ -22,12 +22,15 @@ export class FormularioTComponent implements OnInit {
               private router: Router,
               private activatedRoute: ActivatedRoute) {
                 this.tk = new Ticket()
-                this.local = new Date
+                this.local = new Date()
+                
                 this.espectador = new Espectador()
                 this.espectadores = []
                }
 
   ngOnInit(): void {
+    console.log(this.local)
+    console.log(this.tk.fechaCompra)
     this.activatedRoute.params.subscribe(
       params => {
         if(params['id'] == "0"){
@@ -39,6 +42,10 @@ export class FormularioTComponent implements OnInit {
       }
     )
     this.getEspec()
+  }
+
+  onSubmit() {
+    console.log(this.tk);
   }
 
   public cargarTicket(id: string){
@@ -85,6 +92,7 @@ export class FormularioTComponent implements OnInit {
         console.log("Error procesando operacion")
       }
     )
+    alert('Se ha actualizado su ticket')
     this.router.navigate(['punto3']);
   }
 }

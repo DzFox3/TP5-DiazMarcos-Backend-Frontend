@@ -31,6 +31,9 @@ export class FormularioPComponent implements OnInit {
       }
     )
   }
+  onSubmit() {
+    console.log(this.producto);
+  }
   public cargarProd(id: string){
     this.prod.getProducto(id).subscribe(
       result => {

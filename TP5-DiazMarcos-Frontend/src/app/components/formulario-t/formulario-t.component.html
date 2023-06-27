@@ -3,36 +3,42 @@
         <div class="col-2">
         </div>
         <div class="col-8 p-3 bg-info bg-opacity-10 border border-info border-start-0 rounded-end">
-            <form>
+            <form novalidate (ngSubmit)="onSubmit()" #formTicket="ngForm">
                 <legend class="text-success border-bottom border-success">Nuevo Ticket</legend>
                 <div class="mb-3">
                     <label for="precio" class="form-label">Precio del Ticket</label>
-                    <input [(ngModel)]="tk.precioTicket"  type="number" class="form-control" id="precio" name="precio" required>
+                    <input required #precioTicket="ngModel" [(ngModel)]="tk.precioTicket"  type="number" class="form-control" id="precioTicket" name="precioTicket">
+                    <div *ngIf="precioTicket.invalid && (precioTicket.dirty || precioTicket.touched)" class="alert alert-danger">
+                        <div *ngIf="precioTicket.errors?.['required']"> Numero de precio es necesario. </div>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="descripcion" class="form-label">Categoria del Espectador</label>
-                    <select [(ngModel)]="tk.categoriaEspectador" id="categoria" name="categoria" class="form-select">
+                    <select required ngModel [(ngModel)]="tk.categoriaEspectador" id="categoria" name="categoria" class="form-select">
                         <option value="e">Extrangero</option>
                         <option value="l">Local</option>
                       </select>
                 </div>
                 <div class="mb-3">
-                    <label for="imagen" class="form-label">Fecha de la Compra (Fecha de Hoy: {{local | date:'dd/MM/yyyy'}})</label>
-                    <input [(ngModel)]="tk.fechaCompra" type="text" class="form-control" id="fecha" name="fecha">
+                    <label for="fecha" class="form-label">Fecha de la Compra (Formato de fecha: {{local | date:'dd/MM/yyyy'}})</label>
+                    <input required #fecha="ngModel" [(ngModel)]="tk.fechaCompra" type="text" class="form-control" id="fecha" name="fecha">
+                    <div *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)" class="alert alert-danger">
+                        <div *ngIf="fecha.errors?.['required']"> La Fecha de Compra es necesaria. </div>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="precio" class="form-label">Espectador (Apellido, Nombre)</label>
-                    <select [(ngModel)]="tk.espectador" id="espectador_id" name="espectador_id" class="form-select" aria-label="Default select example">
+                    <select required ngModel [(ngModel)]="tk.espectador" id="espectador_id" name="espectador_id" class="form-select">
                         <option *ngFor="let e of espectadores" [ngValue]="e">{{e.apellido}}, {{e.nombre}}</option>
                     </select>
                 </div>
                 <div>
                     <div *ngIf="accion == 'new'">                   
-                        <button (click)="guardarTicket()" type="submit" class="btn btn-primary btn-md m-2">Guardar Producto</button>
+                        <button [disabled]="formTicket.invalid" (click)="guardarTicket()" type="submit" class="btn btn-primary btn-md m-2">Guardar Producto</button>
                         <button (click)="cancelar()" type="button" class=" m-2 btn btn-danger btn-md">Cancelar Producto</button>
                     </div>
                     <div *ngIf="accion == 'update'">       
-                        <button (click)="actualizarTicket()" type="submit" class="btn btn-primary btn-md m-2">Actualizar Producto</button>
+                        <button [disabled]="formTicket.invalid" (click)="actualizarTicket()" type="submit" class="btn btn-primary btn-md m-2">Actualizar Producto</button>
                         <button (click)="cancelar()" type="button" class=" m-2 btn btn-danger btn-md">Cancelar Producto</button>
                     </div>
                 </div>
